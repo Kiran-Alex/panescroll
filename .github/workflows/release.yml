@@ -1,0 +1,40 @@
+name: Release
+
+# Push a tag like v0.1.0 to build and publish a release.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test
+        run: swift test
+
+      - name: Build universal app (ad-hoc signed)
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          KEEP_RUNNING=1 UNIVERSAL=1 SIGN_IDENTITY=- VERSION="$VERSION" ./scripts/build-app.sh
+          codesign --verify --deep --strict build/Panescroll.app
+          lipo -archs build/Panescroll.app/Contents/MacOS/Panescroll
+
+      - name: Zip
+        run: |
+          ditto -c -k --keepParent build/Panescroll.app "Panescroll-${GITHUB_REF_NAME}.zip"
+          shasum -a 256 "Panescroll-${GITHUB_REF_NAME}.zip" | tee "Panescroll-${GITHUB_REF_NAME}.zip.sha256"
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            "Panescroll-${GITHUB_REF_NAME}.zip" \
+            "Panescroll-${GITHUB_REF_NAME}.zip.sha256" \
+            --title "Panescroll ${GITHUB_REF_NAME}" \
+            --notes-file .github/release-notes.md

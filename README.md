@@ -25,8 +25,23 @@ connects to the network.
 
 ## Install
 
-Panescroll isn't notarized yet, so for now you build it yourself. It takes about a
-minute and needs Xcode 15+ or the Swift toolchain (`xcode-select --install`).
+### Download
+
+Get the latest **Panescroll-vX.Y.Z.zip** from
+[Releases](https://github.com/Kiran-Alex/panescroll/releases/latest), unzip it,
+and move **Panescroll.app** to **Applications**.
+
+Panescroll isn't notarized by Apple yet, so the first time you open it macOS
+says it can't check the app. Open **System Settings → Privacy & Security** and
+click **Open Anyway**, or run:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Panescroll.app
+```
+
+### Build from source
+
+Needs Xcode 15+ or the Swift toolchain (`xcode-select --install`).
 
 ```bash
 git clone https://github.com/Kiran-Alex/panescroll.git
@@ -36,10 +51,10 @@ mv build/Panescroll.app /Applications/
 open /Applications/Panescroll.app
 ```
 
-On first launch:
+### First launch
 
-1. macOS asks for **Accessibility** access. Turn on Panescroll in System Settings →
-   Privacy & Security → Accessibility. Panescroll starts tiling as soon as it's
+1. macOS asks for **Accessibility** access. Turn on Panescroll in System
+   Settings → Privacy & Security → Accessibility. Tiling starts as soon as it's
    allowed, without a restart.
 2. Panescroll asks once whether to open at login. You can change this later in Settings.
 
