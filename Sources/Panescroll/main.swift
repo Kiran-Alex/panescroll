@@ -1,0 +1,3 @@
+import PanescrollCore
+
+PanescrollApp.run()

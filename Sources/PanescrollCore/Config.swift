@@ -1,6 +1,6 @@
 import Foundation
 
-/// User settings, stored at ~/.config/reel/config.json. Missing keys fall back
+/// User settings, stored at ~/.config/panescroll/config.json. Missing keys fall back
 /// to defaults, so the file only needs the values you want to change.
 struct Config: Codable {
     var gap: Double = 8
@@ -15,7 +15,7 @@ struct Config: Codable {
     var scrollSpeed: Double = 1.0
     /// Smoothly slide the strip when focus moves.
     var animate: Bool = true
-    /// Bundle IDs that Reel leaves alone, e.g. "com.apple.calculator".
+    /// Bundle IDs that Panescroll leaves alone, e.g. "com.apple.calculator".
     var ignoredBundleIDs: [String] = []
     var shortcuts: [String: String] = Config.defaultShortcuts
 
@@ -70,7 +70,7 @@ struct Config: Codable {
 
     static var fileURL: URL {
         FileManager.default.homeDirectoryForCurrentUser
-            .appendingPathComponent(".config/reel/config.json")
+            .appendingPathComponent(".config/panescroll/config.json")
     }
 
     func save() {

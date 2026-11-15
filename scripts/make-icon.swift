@@ -1,4 +1,4 @@
-// Draws Reel's app icon (concept A, "Strip") and writes Resources/AppIcon.icns.
+// Draws Panescroll's app icon (concept A, "Strip") and writes Resources/AppIcon.icns.
 // Run: swift scripts/make-icon.swift
 import AppKit
 

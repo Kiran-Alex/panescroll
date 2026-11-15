@@ -107,7 +107,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    /// First run only: offer to open Reel at login. Never asked again; the
+    /// First run only: offer to open Panescroll at login. Never asked again; the
     /// toggle stays in Settings.
     private func askLaunchAtLoginOnce() {
         let key = "askedLaunchAtLogin"
@@ -117,8 +117,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // Let the first tiling pass settle before interrupting.
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             let alert = NSAlert()
-            alert.messageText = "Open Reel when you log in?"
-            alert.informativeText = "Your windows will be tiled as soon as you start your Mac. You can change this any time in Reel Settings."
+            alert.messageText = "Open Panescroll when you log in?"
+            alert.informativeText = "Your windows will be tiled as soon as you start your Mac. You can change this any time in Panescroll Settings."
             alert.addButton(withTitle: "Open at Login")
             alert.addButton(withTitle: "Not Now")
             NSApp.activate()
@@ -174,7 +174,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return true
         }
         image.isTemplate = true
-        image.accessibilityDescription = "Reel"
+        image.accessibilityDescription = "Panescroll"
         return image
     }
 
@@ -219,7 +219,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func refreshPanel() {
         model.enabled = wm?.enabled ?? false
         let stageManager = (CFPreferencesCopyAppValue("GloballyEnabled" as CFString, "com.apple.WindowManager" as CFString) as? Bool) == true
-        model.warning = stageManager ? "⚠︎ Stage Manager is on and will fight Reel. Turn it off in Control Center." : nil
+        model.warning = stageManager ? "⚠︎ Stage Manager is on and will fight Panescroll. Turn it off in Control Center." : nil
         let snap = wm?.snapshot() ?? .init()
         model.windows = snap.windows.map { item in
             let app = NSRunningApplication(processIdentifier: item.pid)
@@ -242,7 +242,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func showAlert(_ text: String) {
         let a = NSAlert()
-        a.messageText = "Reel"
+        a.messageText = "Panescroll"
         a.informativeText = text
         NSApp.activate()
         a.runModal()
@@ -255,7 +255,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 recording ? self?.hotKeys.unregisterAll() : self?.registerHotKeys()
             }
             let w = NSWindow(contentViewController: NSHostingController(rootView: SettingsView(model: settingsModel)))
-            w.title = "Reel Settings"
+            w.title = "Panescroll Settings"
             w.styleMask = [.titled, .closable]
             w.isReleasedWhenClosed = false
             settingsWindow = w

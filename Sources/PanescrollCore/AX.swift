@@ -99,7 +99,7 @@ final class Window {
         return true
     }
 
-    /// Where Reel last put this window.
+    /// Where Panescroll last put this window.
     var placedFrame: CGRect? { lastFrame }
 
     /// Forget the cached frame so the next layout re-applies it.

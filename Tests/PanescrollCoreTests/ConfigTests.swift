@@ -1,5 +1,5 @@
 import XCTest
-@testable import ReelCore
+@testable import PanescrollCore
 
 final class KeyComboTests: XCTestCase {
     func testParsesModifiersAndArrow() throws {

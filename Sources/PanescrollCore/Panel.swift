@@ -197,14 +197,14 @@ struct PanelView: View {
     private var header: some View {
         HStack(spacing: 6) {
             Image(nsImage: NSApp.applicationIconImage).resizable().frame(width: 20, height: 20)
-            Text("Reel").font(.system(size: 13, weight: .semibold))
+            Text("Panescroll").font(.system(size: 13, weight: .semibold))
             Spacer()
             IconButton(symbol: "arrow.clockwise", hint: "Re-tile every window.\(model.shortcut("retile"))", hover: $model.hint, action: model.onRetile)
             IconButton(symbol: model.showShortcuts ? "square.grid.2x2" : "keyboard",
                        hint: model.showShortcuts ? "Back to layouts." : "Show keyboard shortcuts.",
                        hover: $model.hint, action: { model.showShortcuts.toggle() })
             IconButton(symbol: "gearshape", hint: "Settings: shortcuts, scrolling, gaps, launch at login.", hover: $model.hint, action: model.onSettings)
-            IconButton(symbol: "power", hint: "Quit Reel. Windows go back to where they were.", hover: $model.hint, action: model.onQuit)
+            IconButton(symbol: "power", hint: "Quit Panescroll. Windows go back to where they were.", hover: $model.hint, action: model.onQuit)
             Toggle("", isOn: Binding(get: { model.enabled }, set: { model.onToggle($0) }))
                 .toggleStyle(.switch)
                 .controlSize(.small)
@@ -243,8 +243,8 @@ struct PanelView: View {
 
     private var permissionBanner: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Reel needs Accessibility access").font(.system(size: 12, weight: .semibold))
-            Text("Turn on Reel in System Settings → Privacy & Security → Accessibility. If it's already on, remove it with − and add it again.")
+            Text("Panescroll needs Accessibility access").font(.system(size: 12, weight: .semibold))
+            Text("Turn on Panescroll in System Settings → Privacy & Security → Accessibility. If it's already on, remove it with − and add it again.")
                 .font(.system(size: 11)).foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
             Button("Open Accessibility Settings", action: model.onPermissions)

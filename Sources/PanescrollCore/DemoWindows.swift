@@ -101,9 +101,9 @@ private struct BrowserMock: View {
 }
 
 private struct TerminalMock: View {
-    let lines = ["~/projects/reel $ swift build", "Building for debugging...", "[12/12] Compiling ReelCore Strip.swift",
-                 "Build complete! (3.21s)", "~/projects/reel $ swift test",
-                 "Executed 30 tests, with 0 failures", "~/projects/reel $ ▍"]
+    let lines = ["~/projects/panescroll $ swift build", "Building for debugging...", "[12/12] Compiling PanescrollCore Strip.swift",
+                 "Build complete! (3.21s)", "~/projects/panescroll $ swift test",
+                 "Executed 30 tests, with 0 failures", "~/projects/panescroll $ ▍"]
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             ForEach(lines, id: \.self) { l in

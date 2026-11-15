@@ -2,19 +2,19 @@
 import PackageDescription
 
 let package = Package(
-    name: "Reel",
+    name: "Panescroll",
     platforms: [.macOS(.v14)],
     targets: [
-        // The menu bar app. Only starts ReelCore.
+        // The menu bar app. Only starts PanescrollCore.
         .executableTarget(
-            name: "Reel",
-            dependencies: ["ReelCore"],
-            path: "Sources/Reel"
+            name: "Panescroll",
+            dependencies: ["PanescrollCore"],
+            path: "Sources/Panescroll"
         ),
         // All app logic, split out so it can be unit-tested.
         .target(
-            name: "ReelCore",
-            path: "Sources/ReelCore",
+            name: "PanescrollCore",
+            path: "Sources/PanescrollCore",
             linkerSettings: [
                 .linkedFramework("AppKit"),
                 .linkedFramework("ApplicationServices"),
@@ -23,9 +23,9 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "ReelCoreTests",
-            dependencies: ["ReelCore"],
-            path: "Tests/ReelCoreTests"
+            name: "PanescrollCoreTests",
+            dependencies: ["PanescrollCore"],
+            path: "Tests/PanescrollCoreTests"
         ),
     ]
 )

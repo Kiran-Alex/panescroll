@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="Resources/AppIcon-1024.png" width="128" alt="Reel icon">
+  <img src="Resources/AppIcon-1024.png" width="128" alt="Panescroll icon">
 </p>
 
-<h1 align="center">Reel</h1>
+<h1 align="center">Panescroll</h1>
 
 <p align="center">A scrolling window manager for macOS.</p>
 
@@ -11,11 +11,11 @@ opens right next to the one you're using, and every window keeps the width you
 gave it. You scroll along the strip instead of squeezing everything onto one
 screen.
 
-Reel lives in the menu bar, needs only the Accessibility permission, and never
+Panescroll lives in the menu bar, needs only the Accessibility permission, and never
 connects to the network.
 
 <p align="center">
-  <img src="docs/screenshot.png" alt="Reel tiling windows on a horizontal strip: a browser peeking in from the left, a code editor in focus, a terminal and notes stacked on the right, and the Reel menu bar panel open">
+  <img src="docs/screenshot.png" alt="Panescroll tiling windows on a horizontal strip: a browser peeking in from the left, a code editor in focus, a terminal and notes stacked on the right, and the Panescroll menu bar panel open">
 </p>
 
 ## Requirements
@@ -25,23 +25,23 @@ connects to the network.
 
 ## Install
 
-Reel isn't notarized yet, so for now you build it yourself. It takes about a
+Panescroll isn't notarized yet, so for now you build it yourself. It takes about a
 minute and needs Xcode 15+ or the Swift toolchain (`xcode-select --install`).
 
 ```bash
-git clone https://github.com/Kiran-Alex/reel.git
-cd reel
+git clone https://github.com/Kiran-Alex/panescroll.git
+cd panescroll
 ./scripts/build-app.sh
-mv build/Reel.app /Applications/
-open /Applications/Reel.app
+mv build/Panescroll.app /Applications/
+open /Applications/Panescroll.app
 ```
 
 On first launch:
 
-1. macOS asks for **Accessibility** access. Turn on Reel in System Settings →
-   Privacy & Security → Accessibility. Reel starts tiling as soon as it's
+1. macOS asks for **Accessibility** access. Turn on Panescroll in System Settings →
+   Privacy & Security → Accessibility. Panescroll starts tiling as soon as it's
    allowed, without a restart.
-2. Reel asks once whether to open at login. You can change this later in Settings.
+2. Panescroll asks once whether to open at login. You can change this later in Settings.
 
 ## Using it
 
@@ -70,7 +70,7 @@ Every shortcut can be changed in Settings. Click it and press the new keys.
 
 ### Menu bar panel
 
-Click the Reel icon in the menu bar:
+Click the Panescroll icon in the menu bar:
 
 - **Width:** set the focused window to ⅓, ½, ⅔ or the full screen.
 - **Layout:** regroup the strip into halves, thirds, stacks or grids, or back
@@ -81,27 +81,27 @@ Click the Reel icon in the menu bar:
 
 ### Turning it off
 
-Switching tiling off or quitting Reel puts every window back to the position
-and size it had before Reel touched it, including windows that have since
-moved to another Space. While paused, Reel's shortcuts are released for other apps.
+Switching tiling off or quitting Panescroll puts every window back to the position
+and size it had before Panescroll touched it, including windows that have since
+moved to another Space. While paused, Panescroll's shortcuts are released for other apps.
 
 ## Behaviour worth knowing
 
-- **Minimum sizes:** if an app refuses to get as small as a layout asks, Reel
+- **Minimum sizes:** if an app refuses to get as small as a layout asks, Panescroll
   gives it the room it needs and says so in the panel.
 - **Windows keep their spot:** a window that leaves the strip comes back to the
   same position and width. That covers switching Spaces, ⌘H, minimizing and
   switching native tabs.
 - **Frozen apps** are skipped for a few seconds at a time, so the rest of
   tiling stays smooth.
-- **Losing permission:** if Accessibility access is switched off, Reel stops,
+- **Losing permission:** if Accessibility access is switched off, Panescroll stops,
   shows a banner, and resumes once access is back.
 
 ## Known limitations
 
 - **No three-finger swipe:** macOS doesn't let apps read three-finger swipes
   without private APIs. Use ⌃⌥ + scroll instead.
-- **Stage Manager** moves windows on its own and fights Reel. The panel warns
+- **Stage Manager** moves windows on its own and fights Panescroll. The panel warns
   you when it's on.
 - **One strip per display:** all Spaces on a display share one strip and its
   scroll position.
@@ -112,21 +112,21 @@ moved to another Space. While paused, Reel's shortcuts are released for other ap
 
 ## Privacy
 
-Reel has no network code, analytics or telemetry. It reads window positions,
+Panescroll has no network code, analytics or telemetry. It reads window positions,
 sizes and app bundle IDs through the Accessibility API. It never reads window
 titles or contents. It writes only these files:
 
 | File | Contents |
 |---|---|
-| `~/.config/reel/config.json` | Your settings |
-| `~/Library/Application Support/Reel/original-frames.json` | Window positions to restore when tiling is turned off. Deleted when you turn it off. |
-| `~/Library/Logs/Reel.log` | Diagnostic log: window counts, sizes, app names. Capped at about 1 MB. |
+| `~/.config/panescroll/config.json` | Your settings |
+| `~/Library/Application Support/Panescroll/original-frames.json` | Window positions to restore when tiling is turned off. Deleted when you turn it off. |
+| `~/Library/Logs/Panescroll.log` | Diagnostic log: window counts, sizes, app names. Capped at about 1 MB. |
 
 ## Uninstall
 
-1. Quit Reel from the menu bar panel (⏻). Your windows go back to their original places.
-2. Delete `/Applications/Reel.app`.
-3. Remove Reel from System Settings → Privacy & Security → Accessibility, and
+1. Quit Panescroll from the menu bar panel (⏻). Your windows go back to their original places.
+2. Delete `/Applications/Panescroll.app`.
+3. Remove Panescroll from System Settings → Privacy & Security → Accessibility, and
    from General → Login Items if you turned that on.
 4. Optionally delete the three files listed under [Privacy](#privacy).
 
@@ -134,15 +134,15 @@ titles or contents. It writes only these files:
 
 Bug reports and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md)
 for how to build, test and debug. When reporting a bug, please include the
-output of `Reel --diagnose`.
+output of `Panescroll --diagnose`.
 
 ## License
 
-Reel is free software, released under the [GNU General Public License v3.0](LICENSE).
+Panescroll is free software, released under the [GNU General Public License v3.0](LICENSE).
 You may use, study, share and change it. If you distribute a modified version,
 you must release its source under the same license.
 
-Copyright © 2026 Reel contributors.
+Copyright © 2026 Panescroll contributors.
 
-Reel uses one private macOS API (`_AXUIElementGetWindow`, looked up at
+Panescroll uses one private macOS API (`_AXUIElementGetWindow`, looked up at
 runtime) to get stable window IDs, as most macOS window managers do.

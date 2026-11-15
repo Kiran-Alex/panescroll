@@ -1,18 +1,18 @@
 #!/bin/bash
-# Builds a release Reel.app into ./build and ad-hoc signs it.
+# Builds a release Panescroll.app into ./build and ad-hoc signs it.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-# Override with your own reverse-DNS id, e.g. BUNDLE_ID=io.github.you.reel
-BUNDLE_ID="${BUNDLE_ID:-io.github.kiran-alex.reel}"
+# Override with your own reverse-DNS id, e.g. BUNDLE_ID=io.github.you.panescroll
+BUNDLE_ID="${BUNDLE_ID:-io.github.kiran-alex.panescroll}"
 VERSION="${VERSION:-0.1.0}"
 
-pkill -x Reel 2>/dev/null || true
+pkill -x Panescroll 2>/dev/null || true
 swift build -c release
-APP=build/Reel.app
+APP=build/Panescroll.app
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
-cp .build/release/Reel "$APP/Contents/MacOS/Reel"
+cp .build/release/Panescroll "$APP/Contents/MacOS/Panescroll"
 [ -f Resources/AppIcon.icns ] || swift scripts/make-icon.swift .
 cp Resources/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
 cat > "$APP/Contents/Info.plist" <<PLIST
@@ -21,15 +21,15 @@ cat > "$APP/Contents/Info.plist" <<PLIST
 <plist version="1.0">
 <dict>
   <key>CFBundleIdentifier</key><string>$BUNDLE_ID</string>
-  <key>CFBundleName</key><string>Reel</string>
-  <key>CFBundleExecutable</key><string>Reel</string>
+  <key>CFBundleName</key><string>Panescroll</string>
+  <key>CFBundleExecutable</key><string>Panescroll</string>
   <key>CFBundleIconFile</key><string>AppIcon</string>
   <key>CFBundlePackageType</key><string>APPL</string>
   <key>CFBundleShortVersionString</key><string>$VERSION</string>
   <key>CFBundleVersion</key><string>1</string>
   <key>LSMinimumSystemVersion</key><string>14.0</string>
   <key>LSUIElement</key><true/>
-  <key>NSHumanReadableCopyright</key><string>GPL-3.0. Copyright © 2026 Reel contributors.</string>
+  <key>NSHumanReadableCopyright</key><string>GPL-3.0. Copyright © 2026 Panescroll contributors.</string>
 </dict>
 </plist>
 PLIST

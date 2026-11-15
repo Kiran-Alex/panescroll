@@ -1,11 +1,11 @@
 import Foundation
 
-/// Appends to ~/Library/Logs/Reel.log (and stderr).
+/// Appends to ~/Library/Logs/Panescroll.log (and stderr).
 enum Log {
-    static let url = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Logs/Reel.log")
+    static let url = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Logs/Panescroll.log")
     private static let fmt: DateFormatter = { let f = DateFormatter(); f.dateFormat = "HH:mm:ss.SSS"; return f }()
 
-    /// When the log passes this size it's moved to Reel.log.1 (one backup).
+    /// When the log passes this size it's moved to Panescroll.log.1 (one backup).
     private static let maxBytes = 1_000_000
 
     static func write(_ msg: String) {

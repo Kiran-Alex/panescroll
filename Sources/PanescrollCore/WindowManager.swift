@@ -12,7 +12,7 @@ final class WindowManager {
     private(set) var enabled = false
     private var strips: [CGDirectDisplayID: Strip] = [:]
     private var known: [CGWindowID: Window] = [:]
-    /// Frame of each window when Reel first saw it, persisted to disk so a
+    /// Frame of each window when Panescroll first saw it, persisted to disk so a
     /// crash or relaunch never mistakes a tiled frame for the original.
     private var originalFrames: [CGWindowID: FrameStore.Entry] = [:]
     /// Every window ever tiled, kept even after it leaves the strip (other
@@ -359,7 +359,7 @@ final class WindowManager {
     func handle(notification: String, element: AXUIElement) {
         guard enabled else { return }
         if notification == kAXWindowResizedNotification || notification == kAXWindowMovedNotification {
-            // Only the user's own drags (mouse held down). Reel's moves and
+            // Only the user's own drags (mouse held down). Panescroll's moves and
             // apps moving themselves happen with no mouse button pressed.
             guard NSEvent.pressedMouseButtons != 0 else { return }
             if notification == kAXWindowResizedNotification {

@@ -2,8 +2,8 @@ import CoreGraphics
 import Foundation
 
 /// Persists each window's original frame to
-/// ~/Library/Application Support/Reel/original-frames.json, so turning tiling
-/// off restores real sizes even after Reel crashed or was relaunched.
+/// ~/Library/Application Support/Panescroll/original-frames.json, so turning tiling
+/// off restores real sizes even after Panescroll crashed or was relaunched.
 enum FrameStore {
     struct Entry: Codable {
         let pid: pid_t
@@ -12,7 +12,7 @@ enum FrameStore {
 
     private static var url: URL {
         let dir = FileManager.default.homeDirectoryForCurrentUser
-            .appendingPathComponent("Library/Application Support/Reel")
+            .appendingPathComponent("Library/Application Support/Panescroll")
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         return dir.appendingPathComponent("original-frames.json")
     }

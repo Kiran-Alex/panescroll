@@ -1,5 +1,5 @@
 import XCTest
-@testable import ReelCore
+@testable import PanescrollCore
 
 final class StripTests: XCTestCase {
     private let gap: CGFloat = 8

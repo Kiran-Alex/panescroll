@@ -119,7 +119,7 @@ final class HotKeys {
         nextID += 1
         var ref: EventHotKeyRef?
         let status = RegisterEventHotKey(combo.keyCode, combo.modifiers.carbon,
-                                         EventHotKeyID(signature: OSType(0x5245_454C), id: id), // 'REEL'
+                                         EventHotKeyID(signature: OSType(0x504E_5343), id: id), // 'PNSC'
                                          GetApplicationEventTarget(), 0, &ref)
         guard status == noErr, let ref else { return false }
         refs.append(ref)

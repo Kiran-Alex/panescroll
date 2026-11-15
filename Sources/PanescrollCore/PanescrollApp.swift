@@ -1,9 +1,9 @@
 import AppKit
 import SwiftUI
 
-/// Entry point. `main.swift` in the `Reel` target only calls `ReelApp.run()`;
+/// Entry point. `main.swift` in the `Panescroll` target only calls `PanescrollApp.run()`;
 /// everything else lives in this library so it can be unit-tested.
-public enum ReelApp {
+public enum PanescrollApp {
     private static var delegate: AppDelegate?
 
     public static func run() {
@@ -38,10 +38,10 @@ public enum ReelApp {
         app.run()
     }
 
-    /// Read-only: prints permission status and every window Reel can see.
+    /// Read-only: prints permission status and every window Panescroll can see.
     /// Safe to ask users to run for bug reports.
     private static func diagnose() {
-        print("Reel diagnostics")
+        print("Panescroll diagnostics")
         print("accessibility trusted:", AXIsProcessTrusted())
         print("screens:", NSScreen.screens.map { "\($0.localizedName) \($0.axVisibleFrame)" })
         for app in NSWorkspace.shared.runningApplications where app.activationPolicy == .regular {
@@ -107,7 +107,7 @@ public enum ReelApp {
     }
 
     /// Dev aid: applies every panel layout to your REAL windows, prints where
-    /// they ended up, then restores them. Quit Reel first.
+    /// they ended up, then restores them. Quit Panescroll first.
     private static func testLayouts() {
         var cfg = Config()
         cfg.animate = false

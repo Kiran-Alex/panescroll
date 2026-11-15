@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for Reel
+about: Suggest an idea for Panescroll
 labels: enhancement
 ---
 

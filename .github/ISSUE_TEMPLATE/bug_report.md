@@ -24,10 +24,10 @@ labels: bug
 Run this and paste the output (it only lists app bundle IDs and window sizes, no window titles):
 
 ```
-/Applications/Reel.app/Contents/MacOS/Reel --diagnose
+/Applications/Panescroll.app/Contents/MacOS/Panescroll --diagnose
 ```
 
-The last ~50 lines of `~/Library/Logs/Reel.log`:
+The last ~50 lines of `~/Library/Logs/Panescroll.log`:
 
 ```
 ```
