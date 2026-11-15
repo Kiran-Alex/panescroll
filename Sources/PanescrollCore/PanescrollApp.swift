@@ -25,7 +25,7 @@ public enum PanescrollApp {
             app.run()
         }
         if let i = args.firstIndex(of: "--demo-layout"), i + 1 < args.count, let pid = pid_t(args[i + 1]) {
-            demoLayout(pid: pid)
+            demoLayout(pid: pid, grid: args.contains("--grid"))
             exit(0)
         }
         #endif
@@ -86,7 +86,7 @@ public enum PanescrollApp {
 
     /// Dev aid (README screenshot): tiles only the demo process's windows
     /// into a showcase arrangement and prints "windowID x y w h" lines.
-    private static func demoLayout(pid: pid_t) {
+    private static func demoLayout(pid: pid_t, grid: Bool) {
         WindowManager.onlyPID = pid
         var cfg = Config()
         cfg.animate = false
@@ -94,11 +94,18 @@ public enum PanescrollApp {
         wm.start()
         func pump(_ t: TimeInterval) { RunLoop.main.run(until: Date().addingTimeInterval(t)) }
         pump(0.6)
-        // Browser | Editor | Terminal over Notes | Chat, each at its own width.
-        wm.applyLayout(pattern: [1, 1, 2, 1], fraction: nil)
-        pump(0.6)
-        // Scroll so Browser peeks in on the left and the stack on the right.
-        wm.debugScroll(to: 486)
+        if grid {
+            // 2×2 grid on screen, the rest of the strip off to the right.
+            wm.applyLayout(pattern: [2], fraction: 0.5)
+            pump(0.6)
+            wm.debugScroll(to: 0)
+        } else {
+            // Browser | Editor | Terminal over Notes | Chat, each at its own width.
+            wm.applyLayout(pattern: [1, 1, 2, 1], fraction: nil)
+            pump(0.6)
+            // Scroll so Browser peeks in on the left and the stack on the right.
+            wm.debugScroll(to: 486)
+        }
         pump(1.0)
         for (id, f) in wm.debugFrames() {
             print("\(id) \(Int(f.minX)) \(Int(f.minY)) \(Int(f.width)) \(Int(f.height))")

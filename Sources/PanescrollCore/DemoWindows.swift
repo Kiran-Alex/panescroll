@@ -17,7 +17,9 @@ enum DemoWindows {
             let w = NSWindow(contentRect: CGRect(x: 40 + CGFloat(i) * 60, y: 100, width: spec.1, height: 600),
                              styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
             w.title = spec.0
-            w.contentView = NSHostingView(rootView: spec.2)
+            let host = NSHostingView(rootView: AnyView(spec.2.frame(minWidth: 0, minHeight: 0, alignment: .topLeading).clipped()))
+            host.sizingOptions = [] // no SwiftUI minimum size: resizable to anything
+            w.contentView = host
             w.isReleasedWhenClosed = false
             w.makeKeyAndOrderFront(nil)
             return w
@@ -52,14 +54,14 @@ private struct EditorMock: View {
         [(10, .white.opacity(0.5))],
     ]
     var body: some View {
-        HStack(spacing: 0) {
+        HStack(alignment: .top, spacing: 0) {
             VStack(alignment: .leading, spacing: 10) {
                 ForEach(["Sources", "  App.swift", "  main.swift", "  Strip.swift", "Tests", "README.md"], id: \.self) {
                     Text($0).font(.system(size: 11, design: .monospaced)).foregroundStyle(.white.opacity($0.contains("main") ? 1 : 0.55))
                 }
                 Spacer()
             }
-            .padding(14).frame(width: 150).background(Color(white: 0.11))
+            .padding(14).frame(width: 150).frame(maxHeight: .infinity, alignment: .top).background(Color(white: 0.11))
             VStack(alignment: .leading, spacing: 11) {
                 ForEach(lines.indices, id: \.self) { i in
                     HStack(spacing: 6) {
@@ -69,7 +71,7 @@ private struct EditorMock: View {
                 }
                 Spacer()
             }
-            .padding(14).frame(maxWidth: .infinity, alignment: .leading)
+            .padding(14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
         .background(Color(red: 0.09, green: 0.09, blue: 0.12))
     }

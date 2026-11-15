@@ -28,6 +28,8 @@ jobs:
         run: |
           ditto -c -k --keepParent build/Panescroll.app "Panescroll-${GITHUB_REF_NAME}.zip"
           shasum -a 256 "Panescroll-${GITHUB_REF_NAME}.zip" | tee "Panescroll-${GITHUB_REF_NAME}.zip.sha256"
+          # Same file under a fixed name, so .../releases/latest/download/Panescroll.zip always works.
+          cp "Panescroll-${GITHUB_REF_NAME}.zip" Panescroll.zip
 
       - name: Publish release
         env:
@@ -36,5 +38,6 @@ jobs:
           gh release create "$GITHUB_REF_NAME" \
             "Panescroll-${GITHUB_REF_NAME}.zip" \
             "Panescroll-${GITHUB_REF_NAME}.zip.sha256" \
+            Panescroll.zip \
             --title "Panescroll ${GITHUB_REF_NAME}" \
             --notes-file .github/release-notes.md
