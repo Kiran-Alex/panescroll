@@ -6,6 +6,13 @@
 
 <p align="center">A scrolling window manager for macOS.</p>
 
+<p align="center">
+  <a href="https://app.kiranalex.site/#/app/panescroll"><img src="https://img.shields.io/badge/Download-for%20macOS-2ea44f?logo=apple&logoColor=white" alt="Download for macOS" /></a>
+  <a href="https://github.com/Kiran-Alex/panescroll/releases/latest"><img src="https://img.shields.io/github/v/release/Kiran-Alex/panescroll?label=release" alt="Latest release" /></a>
+  <img src="https://img.shields.io/badge/macOS-14%2B-lightgrey" alt="macOS 14+" />
+  <img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="GPL-3.0" />
+</p>
+
 Your windows sit side by side on one horizontal strip per display. A new window
 opens right next to the one you're using, and every window keeps the width you
 gave it. You scroll along the strip instead of squeezing everything onto one
