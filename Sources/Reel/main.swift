@@ -1,0 +1,3 @@
+import ReelCore
+
+ReelApp.run()
